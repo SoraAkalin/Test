@@ -1,0 +1,60 @@
+package StartProject;
+import java.util.Stack;
+
+public class minzhan {
+
+    public static void main(String[] args) {
+        MinStack minStack = new MinStack();
+        minStack.push(-2);
+        minStack.push(0);
+        minStack.push(-3);
+        minStack.min();
+        minStack.pop();
+        minStack.top();
+        minStack.min();
+    }
+    static class MinStack {
+        private Node head;
+
+        public MinStack() {
+
+        }
+
+        public void push(int x) {
+
+            if (head == null)
+                head = new Node(x, x, null);
+            else
+                head = new Node(x, Math.min(head.min, x), head);
+        }
+
+        public void pop() {
+
+            head = head.next;
+        }
+
+        public int top() {
+
+            return head.val;
+        }
+
+        public int min() {
+
+            return head.min;
+        }
+
+        private class Node {
+
+            int val;
+            int min;
+            Node next;
+
+            public Node(int val, int min, Node next) {
+
+                this.val = val;
+                this.min = min;
+                this.next = next;
+            }
+        }
+    }
+}
